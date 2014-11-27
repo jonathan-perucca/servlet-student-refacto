@@ -1,0 +1,166 @@
+@charset "utf-8";
+
+#conteneur {
+width:600px; 
+margin:auto;
+height:auto;
+}
+
+#entete {
+/* styles de caractères */ 
+font:Verdana, Geneva, sans-serif;
+font-size: 25px; 
+color: #40427f; 
+text-align: center;
+/* marges et bordures */
+padding:20px;
+margin: 0px 0 30px 0;
+border:1px solid #777879;
+border-radius: 5px; 
+/* couleur de fond */
+background-color: #EAFDFF ;
+}
+
+label {
+/* positionnement marge et taille */
+float: left; 
+clear: left;
+margin: 10px 20px 0 0;
+width: 150px;
+/* styles de caractères */
+font:Verdana, Geneva, sans-serif;
+font-size: 14px;
+color: #445668;
+text-align: right; 
+}
+
+input {
+/* styles de caractères */
+font:Verdana, Geneva, sans-serif;
+font-size: 14px; 
+color: #4b4b4b; 
+/* marge et taille */
+width: 270px; 
+height: 35px; 
+padding: 5px 10px 0px 10px; 
+margin: 0 0 20px 0;
+/* couleur de fond */
+background: #f1f2f4;
+/* bordures */
+border:1px solid #b6b7b9;
+border-radius: 5px;
+}
+
+input[type=submit] {
+/* position taille marges */
+float: right; 
+cursor: pointer;
+width: 160px;
+height: 42px; 
+padding: 5px 10px; 
+margin: 0 40px 0 0;
+/* coins arrondies */
+border: 1px solid #275682;
+border-radius: 21px;
+/* fond */
+background-color: #0080FF;
+/* styles de texte */
+color:#effaff;
+font-weight:bold;
+}
+
+input[type=submit]:hover {
+border: 1px solid #1a3957;
+background-color:#51A8FF ;
+}
+
+input[type=submit]:active {
+background-color: #0079F2 ;
+}
+
+input[type=reset] {
+/* position taille marges */
+float: right; 
+cursor: pointer;
+width: 160px;
+height: 42px; 
+padding: 5px 10px; 
+margin: 0 40px 0 0;
+/* coins arrondies */
+border: 1px solid #275682;
+border-radius: 21px;
+/* fond */
+background-color: #0080FF;
+/* styles de texte */
+color:#effaff;
+font-weight:bold;
+}
+
+input[type=reset]:hover {
+border: 1px solid #1a3957;
+background-color:#51A8FF ;
+}
+
+input[type=reset]:active {
+background-color: #0079F2 ;
+}
+fieldset {
+background-color:#DFF4FF;
+border: 1px solid ;
+border-radius: 5px;
+}
+
+legend {
+font:Verdana, Geneva, sans-serif;
+font-size:18px;
+color:#445668;
+background-color:#E6F2FF;
+border:1px solid;
+border-color:#000000;
+padding:5px 10px 5px 10px;
+border-radius: 5px;
+}
+
+table
+{
+border-collapse:collapse;
+width:100%;
+max-width:700px;
+min-width:400px;
+text-align:center;
+}
+
+caption
+{
+caption-side:bottom;
+font-weight:bold;
+font-style:italic;
+margin:4px;
+}
+
+table,th, td
+{
+border: 1px solid gray;
+}
+
+th, td
+{
+height: 24px;
+padding:4px;
+vertical-align:middle;
+}
+
+th
+{
+background-image:url(table-shaded.png);
+}.rowtitle
+{
+background: #9CF;
+font-weight:bold;
+}
+table tr:nth-child(odd) td
+{
+  background-color: #E8E8FF;
+}
+
+
