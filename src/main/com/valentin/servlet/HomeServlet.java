@@ -1,4 +1,8 @@
-package com.valentin.servlets;
+package com.valentin.servlet;
+
+import com.valentin.dao.UserDao;
+import com.valentin.service.UserService;
+import com.valentin.service.impl.UserServiceImpl;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,7 +13,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AccueilServlet extends HttpServlet {
+public class HomeServlet extends HttpServlet {
+
+    private UserService userService;
+
+    @Override
+    public void init() throws ServletException {
+        userService = UserServiceImpl.newInstance();
+    }
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -32,7 +43,7 @@ public class AccueilServlet extends HttpServlet {
 			
 		/* Transmission de la paire d'objets request/response � notre JSP */
 		
-		this.getServletContext().getRequestDispatcher( "/index.jsp" ).forward( req, resp );
+		this.getServletContext().getRequestDispatcher("/index.jsp").forward( req, resp );
 	}
 
 }
