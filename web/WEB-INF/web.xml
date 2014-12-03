@@ -1,44 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>CRUD_APPLICATION</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
-  <servlet>
-	<servlet-name>Accueil</servlet-name>
-	<servlet-class>com.valentin.servlets.AccueilServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-	<servlet-name>Accueil</servlet-name>
-	<url-pattern>/Accueil</url-pattern>
-  </servlet-mapping>
-  <servlet>
-	<servlet-name>Personne</servlet-name>
-	<servlet-class>com.valentin.servlets.PersonneServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-	<servlet-name>Personne</servlet-name>
-	<url-pattern>/Personne</url-pattern>
-  </servlet-mapping>
-  <servlet>
-	<servlet-name>Supprime</servlet-name>
-	<servlet-class>com.valentin.servlets.SupprimeServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-	<servlet-name>Supprime</servlet-name>
-	<url-pattern>/Supprime</url-pattern>
-  </servlet-mapping>
-  <servlet>
-	<servlet-name>Update</servlet-name>
-	<servlet-class>com.valentin.servlets.UpdateServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-	<servlet-name>Update</servlet-name>
-	<url-pattern>/Update</url-pattern>
-  </servlet-mapping>
+    <display-name>CRUD_APPLICATION</display-name>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>default.html</welcome-file>
+        <welcome-file>default.htm</welcome-file>
+        <welcome-file>default.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- Servlets -->
+    <servlet>
+        <servlet-name>Accueil</servlet-name>
+        <servlet-class>com.valentin.servlet.HomeServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Personne</servlet-name>
+        <servlet-class>com.valentin.servlet.PersonneServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Supprime</servlet-name>
+        <servlet-class>com.valentin.servlet.SupprimeServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Update</servlet-name>
+        <servlet-class>com.valentin.servlet.UpdateServlet</servlet-class>
+    </servlet>
+
+    <!-- Servlet mappings -->
+    <servlet-mapping>
+        <servlet-name>Accueil</servlet-name>
+        <url-pattern>/Accueil</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Update</servlet-name>
+        <url-pattern>/Update</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Personne</servlet-name>
+        <url-pattern>/Personne</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Personne</servlet-name>
+        <url-pattern>/ListPersonne</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Supprime</servlet-name>
+        <url-pattern>/Supprime</url-pattern>
+    </servlet-mapping>
 </web-app>

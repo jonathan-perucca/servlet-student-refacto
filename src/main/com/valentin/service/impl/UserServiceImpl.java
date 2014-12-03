@@ -5,6 +5,8 @@ import com.valentin.dao.impl.UserDaoImpl;
 import com.valentin.domain.User;
 import com.valentin.service.UserService;
 
+import java.util.List;
+
 /**
  * Service handles business work on entities
  */
@@ -21,6 +23,12 @@ public class UserServiceImpl implements UserService{
         return userDao.get(id);
     }
 
+
+    @Override
+    public User saveUser(User user) {
+        return userDao.save(user);
+    }
+
     @Override
 	public User saveUser(String nom, String genre, String Birthday){
         User user = new User();
@@ -28,7 +36,7 @@ public class UserServiceImpl implements UserService{
    		user.setGenre(genre);
    		user.setBirthday(Birthday);
 
-        return userDao.save(user);
+        return saveUser(user);
 	}
 
     @Override
@@ -36,7 +44,17 @@ public class UserServiceImpl implements UserService{
         return userDao.remove(id);
     }
 
-    public static UserService newInstance() {
-        return new UserServiceImpl(UserDaoImpl.newInstance());
+    @Override
+    public List<User> getUsers() {
+        return userDao.getUsers();
+    }
+
+    private static UserServiceImpl instance;
+
+    public static UserService getInstance() {
+        if(instance == null) {
+            instance = new UserServiceImpl(UserDaoImpl.getInstance());
+        }
+        return instance;
     }
 }

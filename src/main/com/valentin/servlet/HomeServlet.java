@@ -1,11 +1,10 @@
 package com.valentin.servlet;
 
-import com.valentin.dao.UserDao;
+import com.valentin.domain.User;
 import com.valentin.service.UserService;
 import com.valentin.service.impl.UserServiceImpl;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -19,7 +18,7 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        userService = UserServiceImpl.newInstance();
+        userService = UserServiceImpl.getInstance();
     }
 
 	@Override
@@ -27,19 +26,12 @@ public class HomeServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String paramAuteur = req.getParameter( "auteur" );
 		String message = "Transmission de variables : OK ! " + paramAuteur;
-		req.setAttribute( "test", message );
-		
-		/* Cr�ation de la liste et insertion de quatre �l�ments */
-		List<Integer> listePersonne = new ArrayList<Integer>();
-		listePersonne.add( 27 );
-		listePersonne.add( 12 );
-		listePersonne.add( 138 );
-		listePersonne.add( 6 );
-			
+
+        List<User> users = userService.getUsers();
 			
 		/* Stockage du message et du bean dans l'objet request */
 		req.setAttribute( "test", message );
-		req.setAttribute( "liste", listePersonne );
+		req.setAttribute( "listUser", users );
 			
 		/* Transmission de la paire d'objets request/response � notre JSP */
 		

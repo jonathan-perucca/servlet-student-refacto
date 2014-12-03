@@ -6,7 +6,6 @@ import com.valentin.store.Store;
 import com.valentin.store.impl.ListStoreImpl;
 
 import java.util.List;
-import java.util.ListIterator;
 
 public class UserDaoImpl implements UserDao {
 
@@ -41,7 +40,12 @@ public class UserDaoImpl implements UserDao {
         return userStore.getAll();
     }
 
-    public static UserDaoImpl newInstance() {
-        return new UserDaoImpl(ListStoreImpl.newInstance());
+    private static UserDaoImpl instance;
+
+    public static UserDaoImpl getInstance() {
+        if(instance == null) {
+            instance = new UserDaoImpl(ListStoreImpl.getInstance());
+        }
+        return instance;
     }
 }

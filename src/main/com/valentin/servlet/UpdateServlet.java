@@ -7,10 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.util.List;
-import java.util.ListIterator;
-
-import com.valentin.dao.UserDao;
 import com.valentin.domain.User;
 import com.valentin.service.UserService;
 import com.valentin.service.impl.UserServiceImpl;
@@ -21,7 +17,7 @@ public class UpdateServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        userService = UserServiceImpl.newInstance();
+        userService = UserServiceImpl.getInstance();
     }
 
     @Override
@@ -31,18 +27,9 @@ public class UpdateServlet extends HttpServlet {
         String id = req.getParameter( "id" );
         User user = userService.getUser(Long.valueOf(id));
 
-        String genre = req.getParameter( "genre" );
-        String birthday = req.getParameter( "birthday" );
-        String message = "";
-        User unePersonne = new User();
-
         // Warning : always protect from unexistant resource
         if(user != null) {
-            unePersonne.setNom(id);;
-            unePersonne.setGenre(genre);
-            unePersonne.setBirthday(birthday);
-
-            req.setAttribute("Personne",unePersonne);
+            req.setAttribute("user", user);
             this.getServletContext().getRequestDispatcher("/UpdatePersonne.jsp").forward( req, resp );
         }
     }
@@ -63,19 +50,21 @@ public class UpdateServlet extends HttpServlet {
             req.setAttribute( "message", message );
             this.getServletContext().getRequestDispatcher("/index.jsp").forward( req, resp );
         }else {
-
             User user = userService.getUser(Long.valueOf(id));
-            User elem = new User();
-
             if(user != null) {
-                elem.setNom(name);
-                elem.setGenre(genre);
-                elem.setBirthday(birthday);
+                user.setNom(name);
+                user.setGenre(genre);
+                user.setBirthday(birthday);
+                user = userService.saveUser(user);
+
                 message = "Personne correctement modifi�";
             }
-            req.setAttribute("Personne",elem);
-            req.setAttribute("message",message);
-            this.getServletContext().getRequestDispatcher("/ListPersonne.jsp").forward( req, resp );
+            req.setAttribute("user", user);
+            req.setAttribute("message", message);
+
+            resp.setStatus(HttpServletResponse.SC_SEE_OTHER);
+            resp.sendRedirect("/ListPersonne");
+//            this.getServletContext().getRequestDispatcher("/ListPersonne").forward( req, resp );
 
         }
     }

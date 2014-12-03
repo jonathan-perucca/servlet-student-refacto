@@ -11,21 +11,21 @@
 <div>
             <form method="post" action="Update">
                 <fieldset>
-                    <legend>  <div id="entete">Informations Personne</legend> </div> 
+                    <legend>  <div id="entete">Informations Personne</div></legend>
                     <br/>
-                    <input type="hidden" id="name" name="id" value="${Personne.nom }" size="20" maxlength="20" />
+                    <input type="hidden" id="name" name="id" value="${user.id }" size="20" maxlength="20" />
                    
                     <br />
                     <label for="name">Nom <span class="requis">*</span></label>
-                    <input type="text" id="name" name="name" value="${Personne.nom }" size="20" maxlength="20" />
+                    <input type="text" id="name" name="name" value="${user.nom }" size="20" maxlength="20" />
                     <br />
                     
                     <label for="genre">Genre </label>
-                    <input type="text" id="genre" name="genre" value="${Personne.genre }" size="20" maxlength="20" />
+                    <input type="text" id="genre" name="genre" value="${user.genre }" size="20" maxlength="20" />
                     <br />
     
                     <label for="birthday">Date de naissance <span class="requis">*</span></label>
-                    <input type="date" id="birthday" name="birthday" value="${Personne.birthday }" size="20" maxlength="20" />
+                    <input type="date" id="birthday" name="birthday" value="${user.birthday }" size="20" maxlength="20" />
                     <br />
                 </fieldset>
                 <input type="submit" value="modifier"  />

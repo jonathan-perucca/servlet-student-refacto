@@ -5,14 +5,13 @@ import com.valentin.dao.impl.UserDaoImpl;
 import com.valentin.domain.User;
 import com.valentin.service.UserService;
 import com.valentin.store.impl.ListStoreImpl;
-import org.hamcrest.MatcherAssert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class UserServiceImplTest {
@@ -37,7 +36,7 @@ public class UserServiceImplTest {
 
     @Test
     public void shouldSaveUser() {
-        User user = inserUser();
+        User user = insertUser();
 
         assertThat(user.getId(), notNullValue());
         assertThat(user.getId(), is(1L));
@@ -45,7 +44,7 @@ public class UserServiceImplTest {
 
     @Test
     public void shouldGetUser() {
-        inserUser();
+        insertUser();
 
         User user = userService.getUser(1L);
 
@@ -55,8 +54,18 @@ public class UserServiceImplTest {
     }
 
     @Test
+    public void shouldGetAllUsers() {
+        User user1 = insertUser();
+        User user2 = insertUser();
+
+        List<User> users = userService.getUsers();
+
+        assertThat(users, hasItems(user1, user2));
+    }
+
+    @Test
     public void shouldDeleteUser() {
-        User user = inserUser();
+        User user = insertUser();
 
         boolean deleted = userService.removeUser(user.getId());
 
@@ -64,14 +73,14 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void testNewInstance() {
-        UserService userService1 = UserServiceImpl.newInstance();
-        UserService userService2 = UserServiceImpl.newInstance();
+    public void shouldGetSingletonInstance() {
+        UserService userService1 = UserServiceImpl.getInstance();
+        UserService userService2 = UserServiceImpl.getInstance();
 
-        assertThat(userService1, not(userService2));
+        assertThat(userService1, is(userService2));
     }
 
-    private User inserUser() {
+    private User insertUser() {
         return userService.saveUser(firstName, genre, birthdate);
     }
 }

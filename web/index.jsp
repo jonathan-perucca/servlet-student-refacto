@@ -9,7 +9,7 @@
 </head>
 <body>
 <br> <a href="CreatePerson.jsp">Créer une nouvelle personne</a>
-<br> <a href="ListPersonne.jsp">Voir les personnes</a>    	
+<br> <a href="/ListPersonne">Voir les personnes</a>
 <p>${message}</p>
 </body>
 </html>

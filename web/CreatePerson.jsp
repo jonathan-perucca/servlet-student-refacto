@@ -11,7 +11,7 @@
 <div>
             <form method="post" action="Personne">
                 <fieldset>
-                    <legend>  <div id="entete">Informations Personne</legend> </div> 
+                    <legend>  <div id="entete">Informations Personne</div></legend>
                     <br />
                     <label for="name">Nom <span class="requis">*</span></label>
                     <input type="text" id="name" name="name" value="" size="20" maxlength="20" />

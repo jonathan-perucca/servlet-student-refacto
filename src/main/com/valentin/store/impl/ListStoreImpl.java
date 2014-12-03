@@ -113,7 +113,12 @@ public class ListStoreImpl<E extends User, K extends Long> implements Store<E, K
         return false;
     }
 
-    public static Store newInstance() {
-        return new ListStoreImpl(Lists.newArrayList());
+    private static ListStoreImpl instance;
+
+    public static Store getInstance() {
+        if(instance == null) {
+            instance = new ListStoreImpl(Lists.newArrayList());
+        }
+        return instance;
     }
 }

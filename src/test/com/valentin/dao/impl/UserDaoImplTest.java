@@ -95,11 +95,11 @@ public class UserDaoImplTest {
     }
 
     @Test
-    public void shouldNewInstance() {
-        UserDaoImpl userDao1 = userDao.newInstance();
-        UserDaoImpl userDao2 = userDao.newInstance();
+    public void shouldGetSingletonInstance() {
+        UserDaoImpl userDao1 = userDao.getInstance();
+        UserDaoImpl userDao2 = userDao.getInstance();
 
-        assertThat(userDao1, not(userDao2));
+        assertThat(userDao1, is(userDao2));
     }
 
     private void assertThatUserIsNotNullAndMapped(User retrievedUser) {

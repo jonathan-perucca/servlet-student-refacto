@@ -1,6 +1,7 @@
 package com.valentin.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 
 import javax.servlet.ServletException;
@@ -22,18 +23,25 @@ public class PersonneServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        userService = UserServiceImpl.newInstance();
+        userService = UserServiceImpl.getInstance();
         message = "";
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<User> users = userService.getUsers();
+        request.setAttribute("listUser", users);
+        getServletContext().getRequestDispatcher("/ListPersonne.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
 		/* Initialisation de ses propri�t�s */
-        String nomPersonne = req.getParameter( "name" );
-        String genrePersonne = req.getParameter( "genre" );
-        String birthdayPersonne = req.getParameter( "birthday" );
+        String nomPersonne = request.getParameter( "name" );
+        String genrePersonne = request.getParameter( "genre" );
+        String birthdayPersonne = request.getParameter( "birthday" );
 		
         /*
          * Initialisation du message � afficher : si un des champs obligatoires
@@ -42,18 +50,16 @@ public class PersonneServlet extends HttpServlet {
 
         if ( nomPersonne.trim().isEmpty() || genrePersonne.trim().isEmpty() || birthdayPersonne.trim().isEmpty()) {
             message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires.";
-            req.setAttribute( "message", message );
-            this.getServletContext().getRequestDispatcher("/CreatePerson.jsp").forward( req, resp );
+            request.setAttribute("message", message);
+            this.getServletContext().getRequestDispatcher("/CreatePerson.jsp").forward( request, response );
         } else {
             message = "Personne cr��e avec succ�s !";
 
             User user = userService.saveUser(nomPersonne, genrePersonne, birthdayPersonne);
 
-            req.setAttribute( "nom", user.getNom() );
-            req.setAttribute( "genre", user.getGenre() );
-            req.setAttribute( "birthday", user.getBirthday() );
-            req.setAttribute( "message", message );
-            this.getServletContext().getRequestDispatcher("/ShowNewPerson.jsp").forward( req, resp );
+            response.setStatus(HttpServletResponse.SC_SEE_OTHER);
+            response.sendRedirect("/ListPersonne");
+//            this.getServletContext().getRequestDispatcher("/ShowNewPerson.jsp").forward( request, response );
         }
     }
 }
