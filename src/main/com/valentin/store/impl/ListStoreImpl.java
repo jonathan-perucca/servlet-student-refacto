@@ -38,7 +38,7 @@ public class ListStoreImpl<E extends User, K extends Long> implements Store<E, K
     @Override
     public boolean delete(final K key) {
         E entity = get(key);
-        if(!Optional.of(entity).isPresent()) {
+        if(!Optional.fromNullable(entity).isPresent()) {
             return false; // Unknown entity
         }
         return store.remove(entity);
@@ -114,8 +114,7 @@ public class ListStoreImpl<E extends User, K extends Long> implements Store<E, K
     }
 
     private static ListStoreImpl instance;
-
-    public static Store getInstance() {
+    public static ListStoreImpl getInstance() {
         if(instance == null) {
             instance = new ListStoreImpl(Lists.newArrayList());
         }
