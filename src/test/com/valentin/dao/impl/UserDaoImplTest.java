@@ -50,6 +50,7 @@ public class UserDaoImplTest {
         User retrievedUser = userDao.get(Long.valueOf(1));
 
         assertThatUserIsNotNullAndMapped(retrievedUser);
+        assertEquality(retrievedUser);
     }
 
     @Test
@@ -108,5 +109,13 @@ public class UserDaoImplTest {
         assertThat(retrievedUser.getNom(), is(firstName));
         assertThat(retrievedUser.getGenre(), is(genre));
         assertThat(retrievedUser.getBirthday(), is(birthday));
+    }
+
+    private void assertEquality(User retrievedUser) {
+        User userToTest = new User();
+        userToTest.setId(user.getId());
+
+        assertThat(retrievedUser.equals(userToTest), is(true));
+        assertThat(retrievedUser.hashCode(), is(userToTest.hashCode()));
     }
 }

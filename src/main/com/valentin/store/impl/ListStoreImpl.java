@@ -4,12 +4,10 @@ import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.valentin.domain.User;
 import com.valentin.store.Store;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class ListStoreImpl<E extends User, K extends Long> implements Store<E, K>{
