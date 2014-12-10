@@ -1,15 +1,13 @@
 package com.valentin.servlet;
 
-import java.io.IOException;
+import com.valentin.service.UserService;
+import com.valentin.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
-import com.valentin.service.UserService;
-import com.valentin.service.impl.UserServiceImpl;
+import java.io.IOException;
 
 public class SupprimeServlet extends HttpServlet {
 
