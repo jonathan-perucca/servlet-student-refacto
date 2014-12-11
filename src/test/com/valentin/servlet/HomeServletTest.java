@@ -22,7 +22,8 @@ public class HomeServletTest extends HttpServletMock<HomeServlet> {
     @Test
     public void testDoGet() throws ServletException, IOException {
         List<User> users = Lists.newArrayList();
-        users.add(new User(1L, "john", "male", "2010-01-01"));
+        User user = new User.Builder().withId(1L).withNom("john").withGenre("male").withBirthday("2010-01-01").build();
+        users.add(user);
 
         // Functional test code
         when(userService.getUsers()).thenReturn(users);

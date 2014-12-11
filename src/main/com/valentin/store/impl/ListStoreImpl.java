@@ -15,8 +15,6 @@ public class ListStoreImpl<E extends User, K extends Long> implements Store<E, K
     private List<E> store;
     private Long increment;
 
-    private static Store listStore;
-
     public ListStoreImpl(List store) {
         this.increment = 0L;
         this.store = store;

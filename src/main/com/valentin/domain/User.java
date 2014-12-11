@@ -8,11 +8,6 @@ public class User {
 	private String genre;
 	private String birthday;
 
-    public User() {
-
-    }
-
-
     //Getters and Setters
     public Long getId() {
         return id;
@@ -40,13 +35,12 @@ public class User {
 	}
 	
 	//Constructor
-	public User(Long id, String nom, String genre, String birthday) {
-		this.id = id;
-		this.nom = nom;
-		this.genre = genre;
-		this.birthday = birthday;
+	private User(Builder builder) {
+		this.id = builder.id;
+		this.nom = builder.nom;
+		this.genre = builder.genre;
+		this.birthday = builder.birthday;
 	}
-
 
     /** Equals and hashcode */
 
@@ -65,5 +59,43 @@ public class User {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+
+    /**
+     * User Builder
+     */
+    public static class Builder {
+        private Long id;
+        private String nom;
+        private String genre;
+        private String birthday;
+
+        public Builder(){
+        }
+
+        public Builder withId(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withNom(String nom) {
+            this.nom = nom;
+            return this;
+        }
+
+        public Builder withGenre(String genre) {
+            this.genre = genre;
+            return this;
+        }
+
+        public Builder withBirthday(String birthday) {
+            this.birthday = birthday;
+            return this;
+        }
+
+        public User build() {
+            return new User(this);
+        }
     }
 }

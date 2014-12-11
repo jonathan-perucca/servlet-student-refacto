@@ -29,7 +29,7 @@ public class UserDaoImplTest {
         firstName = "John";
         genre = "Smith";
         birthday = "2010-01-01";
-        user = new User(id, firstName, genre, birthday);
+        user = new User.Builder().withId(id).withNom(firstName).withGenre(genre).withBirthday(birthday).build();
         userDao = new UserDaoImpl(new ListStoreImpl(Lists.newArrayList()));
     }
 
@@ -91,7 +91,12 @@ public class UserDaoImplTest {
     @Test
     public void shouldGetAllUsers() {
         userDao.save(user);
-        userDao.save(new User(2L, "Alan", "Bred", "1895-05-21"));
+        User userTwo = new User.Builder().withId(2L)
+                                         .withNom("Alan")
+                                         .withGenre("Bred")
+                                         .withBirthday("1895-05-21")
+                                         .build();
+        userDao.save(userTwo);
 
         List<User> users = userDao.getUsers();
 
@@ -116,7 +121,7 @@ public class UserDaoImplTest {
     }
 
     private void assertEquality(User retrievedUser) {
-        User userToTest = new User();
+        User userToTest = new User.Builder().build();
         userToTest.setId(user.getId());
 
         assertThat(retrievedUser.equals(userToTest), is(true));

@@ -19,9 +19,7 @@ public class ListStoreImplTest {
     public void setUp() {
         listStore = new ListStoreImpl(Lists.newArrayList());
 
-        user = new User();
-        user.setNom("John");
-        user.setBirthday("2010-01-01");
+        user = new User.Builder().withNom("John").withBirthday("2010-01-01").build();
     }
 
     @Test

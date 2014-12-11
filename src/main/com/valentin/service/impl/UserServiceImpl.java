@@ -30,12 +30,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-	public User saveUser(String nom, String genre, String Birthday){
-        User user = new User();
-   		user.setNom(nom);
-   		user.setGenre(genre);
-   		user.setBirthday(Birthday);
-
+	public User saveUser(String nom, String genre, String birthDay){
+        User user = new User.Builder().withNom(nom)
+                                      .withGenre(genre)
+                                      .withBirthday(birthDay)
+                                      .build();
         return saveUser(user);
 	}
 
