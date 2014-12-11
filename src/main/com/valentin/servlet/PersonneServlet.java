@@ -53,7 +53,7 @@ public class PersonneServlet extends HttpServlet {
             request.setAttribute("message", message);
             this.getServletContext().getRequestDispatcher("/CreatePerson.jsp").forward( request, response );
         } else {
-            message = "Personne cr��e avec succ�s !";
+            message = "Personne creee avec succes !";
 
             User user = userService.saveUser(nomPersonne, genrePersonne, birthdayPersonne);
 

@@ -26,7 +26,7 @@ public class SupprimeServlet extends HttpServlet {
 
         boolean deleted = userService.removeUser(Long.valueOf(id));
         if(deleted) {
-            message = "Personne Correctement supprim�";
+            message = "Personne Correctement supprimé";
         } else {
             message = "Personne non enregistrée";
         }

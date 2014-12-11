@@ -79,7 +79,11 @@ public class UserDaoImplTest {
     public void shouldDeleteUser() {
         userDao.save(user);
 
-        boolean removed = userDao.remove(user.getId());
+        boolean removed = false;
+
+        assertThat(removed, is(false));
+
+        removed = userDao.remove(user.getId());
 
         assertThat(removed, is(true));
     }

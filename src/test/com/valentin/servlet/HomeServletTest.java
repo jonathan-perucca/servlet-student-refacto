@@ -14,7 +14,7 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class HomeServletTest extends HttpServletMock{
+public class HomeServletTest extends HttpServletMock<HomeServlet> {
 
     @InjectMocks
     private HomeServlet homeServlet;
@@ -24,8 +24,7 @@ public class HomeServletTest extends HttpServletMock{
         List<User> users = Lists.newArrayList();
         users.add(new User(1L, "john", "male", "2010-01-01"));
 
-        when(homeServlet.getServletContext()).thenReturn(servletContext);
-        when(servletContext.getRequestDispatcher(any(String.class))).thenReturn(requestDispatcher);
+        // Functional test code
         when(userService.getUsers()).thenReturn(users);
 
         homeServlet.doGet(request, response);
